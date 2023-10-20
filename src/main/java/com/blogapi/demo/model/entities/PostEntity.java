@@ -12,18 +12,18 @@ public class PostEntity {
   
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  private int id;
+  private Integer id;
   private String title;
   private String content;
 
-  @ManyToOne
+  //@ManyToOne
   //@JoinColumn(id = "use_id")
-  private int userId;
+  private Integer userId;
   private String published;
   private String updated;
 
   // Getters
-  public int getId() {
+  public Integer getId() {
     return id;
   }
 

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMapping; 
 import org.springframework.web.bind.annotation.RestController;
 
 import com.blogapi.demo.model.entities.PostEntity;
@@ -16,7 +16,7 @@ import com.blogapi.demo.service.PostService;
 
 @RestController
 @RequestMapping("post")
-public class PostsController { 
+public class PostController { 
   
   @Autowired
   private PostService postService;
@@ -27,7 +27,7 @@ public class PostsController {
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<Object> getById(@PathVariable int id) {
+  public ResponseEntity<Object> getById(@PathVariable Integer id) {
     return ResponseEntity.ok(postService.getById(id));
   }
   
@@ -38,13 +38,13 @@ public class PostsController {
   }
 
   @PutMapping("/{id}")
-  public ResponseEntity<PostEntity> UpdatePost(@PathVariable int id, @RequestBody PostEntity post) {
+  public ResponseEntity<PostEntity> UpdatePost(@PathVariable Integer id, @RequestBody PostEntity post) {
     postService.UpdatePost(id, post);
     return ResponseEntity.ok(post);
   }
 
   @DeleteMapping("/{id}")
-  public ResponseEntity<PostEntity> DeletPost(@PathVariable int id) {
+  public ResponseEntity<PostEntity> DeletPost(@PathVariable Integer id) {
     postService.DeletePost(id);
     return ResponseEntity.ok().build();
   }

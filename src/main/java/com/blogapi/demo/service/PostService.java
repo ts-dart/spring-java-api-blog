@@ -21,7 +21,7 @@ public class PostService implements PostServiceInterface {
   }
 
   @Override
-  public Object getById(int id) {
+  public Object getById(Integer id) {
     Optional<PostEntity> post = postRepository.findById(id);
     if (post.isPresent()) {
       return post.get();
@@ -37,8 +37,16 @@ public class PostService implements PostServiceInterface {
   @Override
   public void UpdatePost(Integer id, PostEntity newPost) {
     Optional<PostEntity> post = postRepository.findById(id);
-    if (!post.isPresent()) {
-      postRepository.save(newPost);
+    postRepository.save(newPost);
+    if (post.isPresent()) {
+      PostEntity existingPost = post.get();
+      existingPost.setId(newPost.getId());
+      existingPost.setTitle(newPost.getTitle());
+      existingPost.setContent(newPost.getContent());
+      existingPost.setUserId(newPost.getUserId());
+      existingPost.setPublished(newPost.getPublished());
+      existingPost.setUpdated(newPost.getUpdated());
+      postRepository.save(existingPost);
     }
   }
 
